@@ -2,7 +2,7 @@
 var defaults = {
 
 	// display
-	defaultView: 'month',
+	defaultView: 'threeMonth',
 	aspectRatio: 1.35,
 	header: {
 		left: 'title',
@@ -10,22 +10,23 @@ var defaults = {
 		right: 'today prev,next'
 	},
 	weekends: true,
-	
+
 	// editing
 	//editable: false,
 	//disableDragging: false,
 	//disableResizing: false,
-	
+
 	allDayDefault: true,
 	ignoreTimezone: true,
-	
+
 	// event ajax
 	lazyFetching: true,
 	startParam: 'start',
 	endParam: 'end',
-	
+
 	// time formats
 	titleFormat: {
+		threeMonth: "MMMM [yyyy]{ '&#8212;' MMMM yyyy}",
 		month: 'MMMM yyyy',
 		week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
 		day: 'dddd, MMM d, yyyy'
@@ -38,7 +39,7 @@ var defaults = {
 	timeFormat: { // for event elements
 		'': 'h(:mm)t' // default
 	},
-	
+
 	// locale
 	isRTL: false,
 	firstDay: 0,
@@ -53,22 +54,23 @@ var defaults = {
 		nextYear: '&nbsp;&gt;&gt;&nbsp;',
 		today: 'today',
 		month: 'month',
+		threeMonth: '3 months',
 		week: 'week',
 		day: 'day'
 	},
-	
+
 	// jquery-ui theming
 	theme: false,
 	buttonIcons: {
 		prev: 'circle-triangle-w',
 		next: 'circle-triangle-e'
 	},
-	
+
 	//selectable: false,
 	unselectAuto: true,
-	
+
 	dropAccept: '*'
-	
+
 };
 
 // right-to-left defaults
