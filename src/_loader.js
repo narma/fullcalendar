@@ -18,6 +18,7 @@ startload();
 css('main.css');
 css('common/common.css');
 css('basic/basic.css');
+css('basic/span.css');
 css('agenda/agenda.css');
 cssprint('common/print.css');
 
@@ -44,13 +45,18 @@ js('Header.js');
 js('EventManager.js');
 js('date_util.js');
 js('util.js');
+js('xdate.js');
+js('bootstrap-tooltip.js');
 
 js('basic/MonthView.js');
 js('basic/ThreeMonthView.js');
+js('basic/GroupMonthView.js');
 js('basic/BasicWeekView.js');
 js('basic/BasicDayView.js');
 js('basic/BasicView.js');
+js('basic/SpanView.js');
 js('basic/BasicEventRenderer.js');
+js('basic/SpanEventRenderer.js');
 
 js('agenda/AgendaWeekView.js');
 js('agenda/AgendaDayView.js');

@@ -71,7 +71,7 @@ function sliceSegs(events, visEventEnds, start, end) {
 				msLength: segEnd - segStart
 			});
 		}
-	} 
+	}
 	return segs.sort(segCmp);
 }
 
@@ -308,7 +308,7 @@ function setDayID(cell, date) {
 }
 
 
-function getSkinCss(event, opt) {
+function getSkinCss(event, opt, asDict) {
 	var source = event.source || {};
 	var eventColor = event.color;
 	var sourceColor = source.color;
@@ -331,17 +331,33 @@ function getSkinCss(event, opt) {
 		event.textColor ||
 		source.textColor ||
 		opt('eventTextColor');
-	var statements = [];
-	if (backgroundColor) {
-		statements.push('background-color:' + backgroundColor);
+
+	if(asDict) {
+		var css_map = {};
+		if(backgroundColor) {
+			css_map['background-color'] = backgroundColor;
+		}
+		if(borderColor) {
+			css_map['border-color'] = borderColor;
+		}
+		if(textColor) {
+			css_map['color'] = textColor;
+		}
+		return css_map;
 	}
-	if (borderColor) {
-		statements.push('border-color:' + borderColor);
+	else {
+		var statements = [];
+		if (backgroundColor) {
+			statements.push('background-color:' + backgroundColor);
+		}
+		if (borderColor) {
+			statements.push('border-color:' + borderColor);
+		}
+		if (textColor) {
+			statements.push('color:' + textColor);
+		}
+		return statements.join(';');
 	}
-	if (textColor) {
-		statements.push('color:' + textColor);
-	}
-	return statements.join(';');
 }
 
 

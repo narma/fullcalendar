@@ -2,7 +2,7 @@
 var defaults = {
 
 	// display
-	defaultView: 'threeMonth',
+	defaultView: 'groupMonth',
 	aspectRatio: 1.35,
 	header: {
 		left: 'title',
@@ -30,6 +30,7 @@ var defaults = {
 		month: 'MMMM yyyy',
 		week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
 		day: 'dddd, MMM d, yyyy'
+
 	},
 	columnFormat: {
 		month: 'ddd',
