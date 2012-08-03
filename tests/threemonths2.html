@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<script type='text/javascript' src='../src/_loader.js?debug=1'></script>
+<script type='text/javascript'>
+
+function initCalendar() {
+
+    //var date = new Date();
+    var date = new Date(2012, 6, 1)
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $('#calendar').fullCalendar({
+        year: y,
+        month: m,
+        date: d,
+
+        editable: true,
+        //weekends: false,
+        groupCurrent: 'user',
+        groupChoices: {
+            'user': 'Пользователь',
+            'type': 'Тип события'
+        },
+
+        header: {
+            left: 'prev,next today', //'prevYear,prev,next,nextYear today',
+            center: 'title',
+            right: 'groupMonth,threeMonth,month,agendaWeek,agendaDay' //'month,agendaWeek,basicWeek,agendaDay,basicDay'
+        },
+
+        /*
+        buttonIcons: {
+            prev: 'triangle-1-w',
+            next: 'triangle-1-e',
+            today: 'home'
+        },
+        */
+
+        /*
+        isRTL: true,
+        header: {
+            left: 'nextYear,next,prev,prevYear today',
+            center: 'title',
+            right: 'month,agendaWeek,basicWeek,agendaDay,basicDay'
+        },
+        */
+
+        events: [
+            {
+                title: '1345454 5425-02 193840-9283 09283540 93845039845',
+                start: new Date(y, m, 1),
+                end: new Date(y, m, 4),
+                user: '',
+                type: 'Праздник'
+            },
+            {
+                title: '25',
+                start: new Date(y, m, 3),
+                end: new Date(y, m, 6),
+                type: 'Праздник',
+                user: ''
+            },
+            {
+                title: 'one',
+                start: new Date(y, m, 4),
+                end: new Date(y, m, 4),
+                type: 'Праздник',
+            },
+            {
+                title: 'w',
+                start: new Date(y, m, 2),
+                end: new Date(y, m, 8),
+                type: 'Праздник',
+            },
+            {
+                title: '47',
+                start: new Date(y, m, 5),
+                end: new Date(y, m, 8),
+                user: 'Milla',
+                type: 'Отпуск'
+            },
+            {
+                title: '69',
+                start: new Date(y, m, 7),
+                end: new Date(y, m, 10),
+                user: 'John',
+                type: 'Отгул'
+            },
+            {
+                title: 'Looooong vacation',
+                start: new Date(y, m, 2),
+                end: new Date(y,m+2, 27),
+                user: 'John',
+                type: 'Отпуск',
+                textColor: '#F3F4F5',
+                backgroundColor: '#1A2B3C',
+                url: 'http://google.ru',
+                tooltip: '<img src="http://shanghaiist.com/attachments/shang_kenneth/radiation1.jpg">'
+            }
+
+            // {
+            //     title: 'All Day Event',
+            //     start: new Date(y, m, 1),
+            //     category: 'vasya'
+            // },
+            // {
+            //     title: 'Long Event',
+            //     start: new Date(y, m, d-5),
+            //     end: new Date(y, m, d-2),
+            //     category: 'vasya'
+            // },
+            // {
+            //     id: 999,
+            //     title: 'Repeating Event',
+            //     start: new Date(y, m, d-3, 16, 0),
+            //     allDay: false,
+            //     category: 'vasya'
+            // },
+            // {
+            //     id: 999,
+            //     title: 'Repeating Event',
+            //     start: new Date(y, m, d+4, 16, 0),
+            //     allDay: false,
+            //     category: 'vasya'
+            // },
+            // {
+            //     title: 'Meeting',
+            //     start: new Date(y, m, d, 10, 30),
+            //     allDay: false,
+            //     category: 'petya'
+            // },
+            // {
+            //     id: 777,
+            //     title: 'Lunch',
+            //     start: new Date(y, m, d, 12, 0),
+            //     end: new Date(y, m, d, 14, 0),
+            //     allDay: false,
+            //     //className: 'yellow-event black-text-event',
+            //     className: ['yellow-event', 'black-text-event'],
+            //     category: 'petya'
+            // },
+            // {
+            //     title: 'Birthday Party',
+            //     start: new Date(y, m, d+1, 19, 0),
+            //     end: new Date(y, m, d+1, 22, 30),
+            //     allDay: false,
+            //     category: 'petya'
+            // },
+            // {
+            //     title: 'Click for Google',
+            //     start: new Date(y, m, 28),
+            //     end: new Date(y, m, 29),
+            //     url: 'http://google.com/',
+            //     category: 'google'
+            // }
+        ]
+    });
+
+}
+
+
+$(document).ready(function() {
+
+    initCalendar();
+
+});
+
+</script>
+</head>
+<body style='font-size:13px;margin:40px 0 0'>
+<div id="switcher" style='position:absolute;top:5px;left:5px'></div>
+<div id='calendar' style='width:90%;margin:20px auto 0;font-family:arial'></div>
+</body>
+</html>
