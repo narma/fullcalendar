@@ -249,11 +249,6 @@ function SpanView(element, calendar, viewName) {
         var contentClass = tm + "-widget-content";
         var i, j;
 
-        // .DEBUG
-        window.start = t.xstart;
-        window.end = t.xend;
-
-
         var spanMain = $("<div>").attr({'class': 'spanMain'});
         var spanHeader = $("<div>").attr({'class': 'spanHeader'});
         var spanHeaderTitle = $("<div>").attr({'class': 'spanHeaderTitle'});
@@ -276,7 +271,6 @@ function SpanView(element, calendar, viewName) {
         spanMain.append(spanHeader);
 
         mainDiv = spanMain.appendTo(element);
-        window.mainDiv = mainDiv; // .DEBUG
 
         head = mainDiv.find('div.spanHeader');
         headTitle = head.find('div.spanHeaderTitle');

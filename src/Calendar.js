@@ -64,7 +64,6 @@ function Calendar(element, options, eventSources) {
 
 
 	function render(inc) {
-		window.options = options; // .DEBUG
 		if (!content) {
 			initialRender();
 		}else{

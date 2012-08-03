@@ -24,8 +24,6 @@ function SpanEventRenderer() {
 
 
     function renderEvents(events, modifiedEventId) {
-        // .DEBUG
-        window.events = events
         reportEvents(events);
 
         var rows = compileRows(events);
