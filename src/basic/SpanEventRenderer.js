@@ -89,6 +89,7 @@ function compileRows(events) {
                 groups = $.map(event[groupBy], function(val, index) {
                     return val || '';
                 });
+                if (groups.length == 0) groups = [''];
             } else groups = [event[groupBy] || ''];
 
             for (var i=0, len=groups.length; i < len; i++) {
