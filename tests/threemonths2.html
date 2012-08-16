@@ -19,11 +19,12 @@ function initCalendar() {
 
         editable: true,
         //weekends: false,
-        splitSequentialEvents: true,
-        groupCurrent: 'user',
+        //splitSequentialEvents: true,
+        groupCurrent: 'groups',
         groupChoices: {
             'user': 'Пользователь',
-            'type': 'Тип события'
+            'type': 'Тип события',
+            'groups': 'Группа'
         },
 
         header: {
@@ -51,56 +52,35 @@ function initCalendar() {
 
         events: [
             {
-                title: '1345454 5425-02 193840-9283 09283540 93845039845',
+                title: 'ng',
                 start: new Date(y, m, 1),
                 end: new Date(y, m, 3),
                 user: '',
                 type: 'Праздник'
             },
             {
-                title: '25',
+                title: 'M',
                 start: new Date(y, m, 3),
                 end: new Date(y, m, 6),
                 type: 'Праздник',
-                user: ''
+                user: 'Гыук',
+                groups: ['Манагеры']
+
             },
             {
-                title: 'one',
+                title: 'DM',
                 start: new Date(y, m, 4),
                 end: new Date(y, m, 4),
                 type: 'Праздник',
+                groups: ['Дизигнеры', 'Манагеры']
             },
             {
-                title: 'w',
+                title: 'DT',
                 start: new Date(y, m, 6),
                 end: new Date(y, m, 8),
                 type: 'Праздник',
+                groups: ['Дизигнеры', 'Тестеры']
             },
-            {
-                title: '47',
-                start: new Date(y, m, 6),
-                end: new Date(y, m, 8),
-                user: 'Milla',
-                type: 'Отпуск'
-            },
-            {
-                title: '69',
-                start: new Date(y, m, 7),
-                end: new Date(y, m, 10),
-                user: 'John',
-                type: 'Отгул'
-            },
-            {
-                title: 'Looooong vacation',
-                start: new Date(y, m, 2),
-                end: new Date(y,m+2, 27),
-                user: 'John',
-                type: 'Отпуск',
-                textColor: '#F3F4F5',
-                backgroundColor: '#1A2B3C',
-                url: 'http://google.ru',
-                tooltip: '<img src="http://shanghaiist.com/attachments/shang_kenneth/radiation1.jpg">'
-            }
 
             // {
             //     title: 'All Day Event',

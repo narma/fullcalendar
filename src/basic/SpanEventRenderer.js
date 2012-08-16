@@ -52,6 +52,12 @@ function SpanEventRenderer() {
         return addDays(cloneDate(day), 1);
     }
 
+
+function is(type, obj) {
+    var clas = Object.prototype.toString.call(obj).slice(8, -1);
+    return obj !== undefined && obj !== null && clas === type;
+}
+
 function compileRows(events) {
         var eventsGrouped = {};
         var rowsGrouped = {};
@@ -69,19 +75,31 @@ function compileRows(events) {
             var end = getEnd();
 
 
-            if(eventEnd < start || event.start > end) {
+            if (eventEnd < start || event.start > end) {
                 return true;
             }
-            var val_group = event[groupBy] || '';
 
-            if (eventsGrouped[val_group] == undefined) {
-                eventsGrouped[val_group] = [];
-            }
             event.xstart = new XDate(event.start);
             event.xend = new XDate(eventEnd);
             event.xVisEnd = new XDate(visEventEnd);
 
-            eventsGrouped[val_group].push(event);
+            var groups = [''];
+
+            if (is('Array', event[groupBy])) {
+                groups = $.map(event[groupBy], function(val, index) {
+                    return val || '';
+                });
+            } else groups = [event[groupBy] || ''];
+
+            for (var i=0, len=groups.length; i < len; i++) {
+                var val_group = groups[i];
+
+                if (eventsGrouped[val_group] == undefined) {
+                    eventsGrouped[val_group] = [];
+                }
+                eventsGrouped[val_group].push(event);
+            }
+
         });
 
         $.each(eventsGrouped, function(val_group, events_list) {
