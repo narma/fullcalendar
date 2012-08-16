@@ -16,6 +16,7 @@ function SpanEventRenderer() {
     var getEnd = t.getEnd;
     var getEventsContainer = t.getEventsContainer;
     var getGroupingCurrent = t.getGroupingCurrent;
+    var getSplitSeqEvents = t.getSplitSeqEvents;
 
 
 
@@ -55,6 +56,8 @@ function compileRows(events) {
         var eventsGrouped = {};
         var rowsGrouped = {};
         var groupBy = getGroupingCurrent();
+        var splitEvents = getSplitSeqEvents();
+        var days_delta_splitting = splitEvents ? 0 : 1;
 
 
         // filter for dates and split events to categories
@@ -87,10 +90,11 @@ function compileRows(events) {
             $.each(events_list, function (i, event) {
                 // sorting the events in non-overlapping rows
                 var row;
-                for (row=0; row_end[row] > event.start; ++row) {};  // find a "free" row (no other event)
+                for (row=0; row_end[row] && row_end[row].diffDays(event.xstart) < days_delta_splitting; ++row) {};
+                    // find a "free" row (no other event)
                 if(rows[row] == undefined) rows[row] = [];
                 rows[row].push(event);
-                row_end[row] = getEventEnd(event);
+                row_end[row] = event.xend;
             });
             rowsGrouped[val_group] = rows;
 

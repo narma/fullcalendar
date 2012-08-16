@@ -45,6 +45,7 @@ function SpanView(element, calendar, viewName) {
 
     t.getEventsContainer = function() { return mainDiv; };
     t.getGroupingCurrent = getGroupingCurrent;
+    t.getSplitSeqEvents = getSplitSeqEvents;
 
 
     // imports
@@ -97,6 +98,7 @@ function SpanView(element, calendar, viewName) {
     var colFormat;
 
     var currentGrouping = opt('groupCurrent');
+    var splitSequentialEvents = opt('splitSequentialEvents');
     /* Rendering
     ------------------------------------------------------------*/
 
@@ -222,6 +224,9 @@ function SpanView(element, calendar, viewName) {
 
     function getGroupingCurrent() {
         return currentGrouping;
+    }
+    function getSplitSeqEvents() {
+        return splitSequentialEvents;
     }
 
     function buildDropDownGroupLink(choices, current) {

@@ -19,6 +19,7 @@ function initCalendar() {
 
         editable: true,
         //weekends: false,
+        splitSequentialEvents: true,
         groupCurrent: 'user',
         groupChoices: {
             'user': 'Пользователь',
@@ -52,7 +53,7 @@ function initCalendar() {
             {
                 title: '1345454 5425-02 193840-9283 09283540 93845039845',
                 start: new Date(y, m, 1),
-                end: new Date(y, m, 4),
+                end: new Date(y, m, 3),
                 user: '',
                 type: 'Праздник'
             },
@@ -71,13 +72,13 @@ function initCalendar() {
             },
             {
                 title: 'w',
-                start: new Date(y, m, 2),
+                start: new Date(y, m, 6),
                 end: new Date(y, m, 8),
                 type: 'Праздник',
             },
             {
                 title: '47',
-                start: new Date(y, m, 5),
+                start: new Date(y, m, 6),
                 end: new Date(y, m, 8),
                 user: 'Milla',
                 type: 'Отпуск'
