@@ -1,7 +1,7 @@
 (function() {
 
-var JQUERY = 'jquery-1.7.1.min.js';
-var JQUERY_UI = 'jquery-ui-1.8.17.custom.min.js';
+var JQUERY = 'jquery-1.8.0.min.js';
+var JQUERY_UI = 'jquery-ui-1.8.23.custom.min.js';
 var JQUERY_LEGACY = 'jquery-1.3.2.min.js';
 var JQUERY_UI_LEGACY = 'jquery-ui-1.7.3.custom.min.js';
 
@@ -20,6 +20,7 @@ css('common/common.css');
 css('basic/basic.css');
 css('basic/span.css');
 css('agenda/agenda.css');
+css('bootstrap.css');
 cssprint('common/print.css');
 
 if (!legacy) {
