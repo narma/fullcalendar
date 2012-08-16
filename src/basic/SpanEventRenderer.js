@@ -68,7 +68,7 @@ function compileRows(events) {
 
         // filter for dates and split events to categories
         // and add XDate instances for dates with prefixes x
-        $(events).each(function (i, event) {
+        $(events).each(function (index_event, event) {
             var eventEnd = getEventEnd(event);
             var visEventEnd = getVisEventEnd(event);
             var start = getStart();
