@@ -1,3 +1,4 @@
+// add bootstrap style for use
 (function() {
 
 var JQUERY = 'jquery-1.8.0.min.js';
@@ -20,7 +21,6 @@ css('common/common.css');
 css('basic/basic.css');
 css('basic/span.css');
 css('agenda/agenda.css');
-css('bootstrap.css');
 cssprint('common/print.css');
 
 if (!legacy) {
