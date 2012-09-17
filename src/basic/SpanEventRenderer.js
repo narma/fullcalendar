@@ -64,20 +64,23 @@ function compileRows(events) {
         var groupBy = getGroupingCurrent();
         var splitEvents = getSplitSeqEvents();
         var days_delta_splitting = splitEvents ? 0 : 1;
-
+        var start = getStart();
+        var end = getEnd();
 
         // filter for dates and split events to categories
         // and add XDate instances for dates with prefixes x
+        //console.log('start,end:', start, end);
+
         $(events).each(function (index_event, event) {
             var eventEnd = getEventEnd(event);
             var visEventEnd = getVisEventEnd(event);
-            var start = getStart();
-            var end = getEnd();
 
 
-            if (eventEnd < start || event.start > end) {
+            if (visEventEnd < start || event.start >= end) {
+                //console.log('BAD', event.start, eventEnd);
                 return true;
             }
+            //console.log('OK ', event.start, eventEnd);
 
             event.xstart = new XDate(event.start);
             event.xend = new XDate(eventEnd);
