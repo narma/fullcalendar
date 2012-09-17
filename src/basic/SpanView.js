@@ -13,6 +13,13 @@ XDate.prototype.startOfWeek = function() {
     return this.addDays(1-day);
 }
 
+XDate.locales['ru'] = {
+    monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    monthNamesShort: ['Янв.','Февр.','Март','Апр.','Май','Июнь','Июль.','Авг.','Сент.','Окт.','Ноя.','Дек.'],
+    dayNames: ['Воскресеньше','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
+    dayNamesShort: ['Вск.','Пн.','Вт.','Ср.','Чт.','Пт.','Сб.']
+};
+
 
 function SpanView(element, calendar, viewName) {
     var t = this;
@@ -169,6 +176,8 @@ function SpanView(element, calendar, viewName) {
         var s = '';
 
         var start_week = start.clone();
+        var currYear = start.getFullYear();
+        var currDateForTooltip = new XDate();
         var end_week = end.clone();
         var weeksChunks = 0;
 
@@ -204,13 +213,17 @@ function SpanView(element, calendar, viewName) {
             else if ((_i+1) >= weeksChunks) {
                 width *= (7 - endOffset)/7;
             }
-
-            s += '<div class="spanScaleWeek ' + even_odd + '" style="left: ' + currScale.toFixed(2) + '%; width: ' + width.toFixed(2) + '%">';
+            currDateForTooltip.setWeek(currWeek, currYear);
+            s += '<div data-startdate="' + currDateForTooltip.toISOString() + '" class="spanScaleWeek '
+                 + even_odd + '" style="left: ' + currScale.toFixed(2) + '%; width: ' + width.toFixed(2) + '%">';
             s += '' + (currWeek);
             s += '</div>';
 
             currScale += width;
-            if (currWeek == 53) currWeek = 0;
+            if (currWeek == 53) { // +1 year
+                currWeek = 0;
+                currYear += 1;
+            }
             currWeek += 1;
         }
 
@@ -248,6 +261,26 @@ function SpanView(element, calendar, viewName) {
         return select;
     }
 
+    function getSpinnerLeftPct() {
+        var start = t.getStart(),
+            end = t.getEnd(),
+            today = new XDate();
+
+        if (today > end || today < start) {
+            return '-1%';
+        }
+
+        var basePct = 15; // based on .spanHeaderTitle.width property
+
+        var totalDays = end.diffDays(start);
+        var firstDay = today.diffDays(start);
+        var localPct = firstDay/totalDays*100;
+
+        var pct = (1-basePct/100)*localPct + basePct;
+        return '' + pct + '%';
+
+    }
+
 
     function buildHeaderSkeleton(maxRowCnt, showNumbers) {
         var headerClass = tm + "-widget-header";
@@ -255,6 +288,9 @@ function SpanView(element, calendar, viewName) {
         var i, j;
 
         var spanMain = $("<div>").attr({'class': 'spanMain'});
+
+        var spanSpinner = $("<div>").attr({'class': 'spanSpinner'}).css('left', '' + getSpinnerLeftPct() + '%');
+
         var spanHeader = $("<div>").attr({'class': 'spanHeader'});
         var spanHeaderTitle = $("<div>").attr({'class': 'spanHeaderTitle'});
         if (options.groupChoices) {
@@ -265,14 +301,26 @@ function SpanView(element, calendar, viewName) {
         var spanScaleMonths = $("<div>").attr({'class': 'spanScale'});
         spanScaleMonths.append(buildMonthHeader(t.xstart, t.xend));
 
-        var spanScaleWeeks = $("<div>").attr({'class': 'spanScale'});
+        var spanScaleWeeks = $("<div>").attr({'class': 'spanScale spanScaleWeeks'});
         spanScaleWeeks.append(buildWeeksHeader(t.xstart, t.xend));
+        spanScaleWeeks.tooltip({
+            title: function() {
+                var startWeek = new XDate($(this).data('startdate'));
+                var endWeek = startWeek.clone().addDays(6);
+                return startWeek.toString('dd MMMM', 'ru') + ' - ' + endWeek.toString('dd MMMM', 'ru');
+
+
+
+            },
+            selector: '.spanScaleWeek'
+        });
 
         // build tree
         headerRows.append(spanScaleMonths);
         headerRows.append(spanScaleWeeks);
         spanHeader.append(spanHeaderTitle);
         spanHeader.append(headerRows);
+        spanMain.append(spanSpinner);
         spanMain.append(spanHeader);
 
         mainDiv = spanMain.appendTo(element);
