@@ -69,7 +69,7 @@ function compileRows(events) {
             isSplitThisEvents = splitEvents;
         }
         else {
-            days_delta_splitting = splitEvents ? 0 : 1;
+            var days_delta_splitting = splitEvents ? 0 : 1;
             isSplitThisEvents = function(row_end_event, event) {
                 return row_end_event.xend.diffDays(event.xstart) < days_delta_splitting;
             };
