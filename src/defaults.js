@@ -2,7 +2,7 @@
 var defaults = {
 
 	// display
-	defaultView: 'groupMonth',
+	defaultView: 'groupMonth3',
 	aspectRatio: 1.35,
 	header: {
 		left: 'title',
@@ -27,6 +27,8 @@ var defaults = {
 	// time formats
 	titleFormat: {
 		threeMonth: "MMMM [yyyy]{ '&#8212;' MMMM yyyy}",
+		groupMonth3: "MMMM [yyyy]{ '&#8212;' MMMM yyyy}",
+		groupMonth1: 'MMMM yyyy',
 		month: 'MMMM yyyy',
 		week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}",
 		day: 'dddd, MMM d, yyyy'
@@ -56,6 +58,8 @@ var defaults = {
 		today: 'today',
 		month: 'month',
 		threeMonth: '3 months',
+		groupMonth1: 'Month',
+		groupMonth3: '3 Months',
 		week: 'week',
 		day: 'day'
 	},
