@@ -1,7 +1,7 @@
 // add bootstrap style for use
 (function() {
 
-var JQUERY = 'jquery-1.8.0.min.js';
+var JQUERY = 'jquery-1.8.1.min.js';
 var JQUERY_UI = 'jquery-ui-1.8.23.custom.min.js';
 var JQUERY_LEGACY = 'jquery-1.3.2.min.js';
 var JQUERY_UI_LEGACY = 'jquery-ui-1.7.3.custom.min.js';
