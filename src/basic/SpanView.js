@@ -272,8 +272,8 @@ function SpanView(element, calendar, viewName) {
 
         var basePct = 15; // based on .spanHeaderTitle.width property
 
-        var totalDays = end.diffDays(start);
-        var firstDay = today.diffDays(start);
+        var totalDays = start.diffDays(end);
+        var firstDay = Math.floor(start.diffDays(today));
         var localPct = firstDay/totalDays*100;
 
         var pct = (1-basePct/100)*localPct + basePct;
