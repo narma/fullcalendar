@@ -63,7 +63,18 @@ function compileRows(events) {
         var rowsGrouped = {};
         var groupBy = getGroupingCurrent();
         var splitEvents = getSplitSeqEvents();
-        var days_delta_splitting = splitEvents ? 0 : 1;
+        var isSplitThisEvents;
+
+        if (typeof splitEvents == 'function') {
+            isSplitThisEvents = splitEvents;
+        }
+        else {
+            days_delta_splitting = splitEvents ? 0 : 1;
+            isSplitThisEvents = function(row_end_event, event) {
+                return row_end_event.xend.diffDays(event.xstart) < days_delta_splitting;
+            };
+
+        }
         var start = getStart();
         var end = getEnd();
 
@@ -112,11 +123,11 @@ function compileRows(events) {
             $.each(events_list, function (i, event) {
                 // sorting the events in non-overlapping rows
                 var row;
-                for (row=0; row_end[row] && row_end[row].diffDays(event.xstart) < days_delta_splitting; ++row) {};
+                for (row=0; row_end[row] && isSplitThisEvents(row_end[row], event); ++row) {};
                     // find a "free" row (no other event)
                 if(rows[row] == undefined) rows[row] = [];
                 rows[row].push(event);
-                row_end[row] = event.xend;
+                row_end[row] = event; //.xend;
             });
             rowsGrouped[val_group] = rows;
 
